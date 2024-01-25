@@ -6,16 +6,17 @@ using EllipsisNotation
 using Logging; using LoggingExtras;
 using ShiftedArrays
 
-const fileType = ".pdf";
-const jldType = ".jld";
-const jld2Type = ".jld2";
-const npyType = ".npy";
+# const fileType = ".pdf";
+# const jldType = ".jld";
+# const jld2Type = ".jld2";
+# const npyType = ".npy";
 
 @enum MatchMethod mX = 1 mExtended mSameN mPropagate;
 
 export error_only_logger
 
-export fileType, jldType, jld2Type, npyType, MatchMethod, mX, mExtended, mSameN, mPropagate
+# export fileType, jldType, jld2Type, npyType
+export MatchMethod, mX, mExtended, mSameN, mPropagate
 
 export printlnLogFile, printLogFile, SortABbyA, EigenSort!, dotEachCol, dotEachCol!, wrap, arrLstToArr, arrLstToArrDepth, arrToArrLst, cartIndLstToArr, gridLst, wrapCartInd!, selectDimLst, wrapIntInd, getLinInd, wrapIndArr!, wrapCoorArr!, wrapDiffArr!, funArrDims, shIdVec!
 
@@ -40,6 +41,12 @@ export permuteArr!, permuteCol2d!, permute1d!
 
 include("Utils_arrManip.jl")
 export arrSlcLst, arrShAllLst, assignArrOfArrs!
+
+include("Utils_arrHighDim.jl")
+export arrShAdvRetLstFunc
+
+include("Utils_strManip.jl")
+export strAppendWith_
 
 function colabIOreset()
 	if isdefined(Main, :IJulia)
