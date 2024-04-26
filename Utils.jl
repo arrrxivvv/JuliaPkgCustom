@@ -1,6 +1,6 @@
 module Utils
 
-# using Infiltrator
+using Infiltrator
 using LinearAlgebra
 using EllipsisNotation
 using Logging; using LoggingExtras;
