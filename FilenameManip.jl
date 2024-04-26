@@ -11,7 +11,20 @@ const npyType = ".npy";
 function fNameFunc( fNameMain, attrLst, valLst, fExt; fMod = "" )
 	fName = fNameMain;
 	for ii = 1 : length(attrLst)
-		fName = fName * "_" * attrLst[ii] * "_" * string( valLst[ii] );
+		if isa(valLst[ii], Array)
+			valStr = "[";
+			for iA = 1 : length(valLst[ii])
+				valStr *= string(valLst[ii][iA]);
+				if iA < length(valLst[ii])
+					valStr *= ", ";
+				end
+			end
+			valStr *= "]";
+		else
+			valStr = string(valLst[ii]);
+		end
+		fName = fName * "_" * attrLst[ii] * "_" * valStr;
+		# fName = fName * "_" * attrLst[ii] * "_" * string( valLst[ii] );
 	end
 	
 	if isa( fMod, Vector{String} )
