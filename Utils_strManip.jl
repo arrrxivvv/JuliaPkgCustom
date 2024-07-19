@@ -8,6 +8,15 @@ function strAppendWith_( str::String, strApp::String )
 	return str;
 end
 
+function strLstJoinWith_( strLst::Vector{String} )
+	strJoined = "";
+	for ii = 1 : length(strLst)
+		strJoined = strAppendWith_(strJoined, strLst[ii]);
+	end
+	
+	return strJoined;
+end
+
 function strReadLastLine( fName::String )
 	open(fName) do io
 		seekend(io);

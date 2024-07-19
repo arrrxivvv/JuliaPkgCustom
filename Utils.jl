@@ -46,7 +46,10 @@ include("Utils_arrHighDim.jl")
 export arrShAdvRetLstFunc
 
 include("Utils_strManip.jl")
-export strAppendWith_
+export strAppendWith_, strLstJoinWith_
+
+include("Utils_fileSaving.jl")
+
 
 function colabIOreset()
 	if isdefined(Main, :IJulia)
