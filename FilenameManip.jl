@@ -44,4 +44,38 @@ function fNameFunc( fNameMain, attrLst, valLst, fExt; fMod = "" )
 	return fName;
 end
 
+function extractFNameAttrs( fName::String )
+	iStartPrev = findfirst( '_', fName );
+	iEndNxt = findlast( '.', fName );
+	
+	iStart = nextind( fName, iStartPrev );
+	iEnd = prevind( fName, iEndNxt );
+	
+	return fName[iStart:iEnd];
+end
+
+function extractFNameAttrsLoop( fName::String )
+	iStartPrev = firstindex( fName );
+	iEndNxt = lastindex( fName );
+	
+	while iStartPrev <= lastindex( fName )
+		if fName[iStartPrev] == '_'
+			break;
+		end
+		iStartPrev = nextind( fName, iStartPrev );
+	end
+	
+	while iEndNxt >= firstindex( fName )
+		if fName[iEndNxt] == '.'
+			break;
+		end
+		iEndNxt = prevind( fName, iEndNxt );
+	end
+	
+	iStart = nextind( fName, iStartPrev );
+	iEnd = prevind( fName, iEndNxt );
+	
+	return fName[iStart:iEnd];
+end
+
 end
