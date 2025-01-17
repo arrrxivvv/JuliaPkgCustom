@@ -5,6 +5,9 @@ using LinearAlgebra
 using EllipsisNotation
 using Logging; using LoggingExtras;
 using ShiftedArrays
+using StaticArrays
+
+# using Infiltrator
 
 # const fileType = ".pdf";
 # const jldType = ".jld";
@@ -40,7 +43,7 @@ include("Utils_sort_perms.jl")
 export permuteArr!, permuteCol2d!, permute1d!
 
 include("Utils_arrManip.jl")
-export arrSlcLst, arrShAllLst, assignArrOfArrs!
+export arrSlcLst, arrShAllLst, assignArrOfArrs!, leviCivita3rdIdMat, leviCivita3rdSgnMat
 
 include("Utils_arrHighDim.jl")
 export arrShAdvRetLstFunc
@@ -49,6 +52,11 @@ include("Utils_strManip.jl")
 export strAppendWith_, strLstJoinWith_
 
 include("Utils_fileSaving.jl")
+
+include("Utils_dataStructures.jl")
+export iterate
+
+include("Utils_linearAlgebra.jl")
 
 
 function colabIOreset()

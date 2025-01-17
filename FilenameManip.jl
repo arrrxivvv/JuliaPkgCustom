@@ -1,12 +1,13 @@
 module FilenameManip
 
 export fNameFunc
-export pdfType, jldType, jld2Type, npyType
+export pdfType, jldType, jld2Type, npyType, txtType
 
 const pdfType = ".pdf";
 const jldType = ".jld";
 const jld2Type = ".jld2";
 const npyType = ".npy";
+const txtType = ".txt";
 
 function fNameFunc( fNameMain, attrLst, valLst, fExt; fMod = "" )
 	fName = fNameMain;
@@ -76,6 +77,23 @@ function extractFNameAttrsLoop( fName::String )
 	iEnd = prevind( fName, iEndNxt );
 	
 	return fName[iStart:iEnd];
+end
+
+# function fAttr_arrSummary( lst )
+	# if length(lst) > 1
+		# return push!( lst[[1,end]], lst[2] - lst[1] )
+	# else
+		# return lst[[1,end]];
+	# end
+# end
+
+function fAttr_arrSummary( lst )
+	lstStep = length(lst) > 1 ? lst[2]-lst[1] : 0;
+	return fAttr_arrSummary( lst, lstStep );
+end
+
+function fAttr_arrSummary( lst, lstStep )
+	return push!( lst[[1,end]], lstStep )
 end
 
 end

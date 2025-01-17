@@ -53,3 +53,47 @@ end
 	# vecLst .= vecLst[..,indSort];
 	# # return valLSt, vecLst
 # end
+
+function searchSortedFirstByVal( arr::AbstractVector, val; by = identity )
+	iLo = 1;
+	iHi = length(arr);
+	iAns = 1;
+	
+	valMid = arr[1];
+	valHi = arr[1];
+	valLo = arr[1];
+	
+	if by(arr[iLo]) > val
+		return iLo;
+	else
+		while iLo < iHi
+			iMid = div(iLo+iHi,2);
+			valMid = by(arr[iMid]);
+			valHi = by(arr[iHi]);
+			valLo = by(arr[iLo]);
+			
+			if iMid == iLo
+				if valMid == val
+					iAns = iMid;
+				elseif valHi >= val
+					iAns = iHi;
+				else
+					iAns = iHi + 1;
+				end
+				break;
+			elseif valMid > val
+				iHi = iMid - 1;
+			elseif valMid < val
+				iLo = iMid;
+			else
+				iAns = iMid;
+				break;
+			end
+		end
+		if iLo == iHi
+			iAns = valLo == val ? iLo : iLo + 1;
+		end
+	end
+	
+	return iAns;
+end
